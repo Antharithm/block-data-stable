@@ -1,6 +1,6 @@
 import './App.css';
 import logo from './logo.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json';
 import { type } from '@testing-library/user-event/dist/type';
@@ -65,6 +65,20 @@ function App() {
     }
   }
 
+  
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+
+  useEffect(() => {
+    document.body.className = theme;
+    }, [theme]);
+
   return (
     <div className="App">
       <header className='App Header'>
@@ -72,9 +86,13 @@ function App() {
         <button onClick={setGreeting}>Set Greeting</button>
         <input 
           onChange={error => setGreetingValue(error.target.value)}
-          placeholder="Set greeting"
+          placeholder="Set greeting" // Will look greyed out in the input field
           value={greeting}
         />
+        <div className={`App ${theme}`}>
+          <button onClick={toggleTheme}>Toggle Theme</button>
+          <h1>Hello, world!</h1>
+        </div>
       </header>
     </div>
   );
