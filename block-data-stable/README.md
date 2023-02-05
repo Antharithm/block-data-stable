@@ -1,6 +1,6 @@
 # block-data-stable-version
 
-This project is a stable fullstack web3 template to build from
+This project is a stable fullstack web3 template to build from!
 
 Try running some of the following tasks:
 
